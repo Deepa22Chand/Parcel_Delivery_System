@@ -13,6 +13,9 @@ import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LogoutComponent } from './logout/logout.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ParcelDetailsComponent } from './parcel-details/parcel-details.component';
+import { FooterComponent } from './footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,7 +24,10 @@ import { LogoutComponent } from './logout/logout.component';
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    LogoutComponent
+    LogoutComponent,
+    ProfileComponent,
+    ParcelDetailsComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

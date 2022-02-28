@@ -4,6 +4,7 @@ const app = express();
 const monggose = require('mongoose');
 const User = require('./models/users');
 const session = require('express-session');
+const customer_Details = require('./models/user_details')
 
 app.use(session({
     secret:'ascjhgasiudlfg342hvjbgu432g5uv5u324v',
@@ -23,6 +24,8 @@ app.use(bodyParser.urlencoded({ extended: false }))
 // parse application/json
 
 app.use(bodyParser.json());
+
+//----------------------------------------------------------Login-----------------------------------------------------------
 
 app.post('/api/login', async(req,res)=>{
     
@@ -58,41 +61,51 @@ app.post('/api/login', async(req,res)=>{
     }
     res.end();
 });
+//----------------------------------------------------------Register--------------------------------------------------------
 app.post('/api/register',async (req,res)=>{
+    console.log("Register")
     const {email,password}= req.body;
     console.log(email,password);
 
-    //check existing users
+    // check existing users
     const existingUser = await User.findOne({email});
-    // console.log(existingUser);
+    console.log(existingUser);
 
     if(existingUser){
         res.json({
             success:false,
             message:"Email already in use"
         })
-        return
-    }
+          }
     else{
           
         console.log("data uploading");   
         const user= new User(
             { 
                 email,
-                password
+                password    
             });
         const result= await user.save();
-            // console.log(result);
+        console.log(result)// show the object we  have enter in database 
+        const userid=monggose.Types.ObjectId(result.id).valueOf();
+                // return result
         res.json({
             success: true,
-            message:"Welcome to Parcel delivery System"
+            message:"Welcome to Parcel delivery System",
+            id:userid
+            
+            
         });
         return
         }
             // res.end();
 });
+
+//--------------------------------------------------return data(email,id)-----------------------------------------------------
 app.get('/api/data',async(req,res)=>{
-    const user = await User.findOne({email:req.session.user})
+    const user = await User.findOne({email:req.session.user })
+    
+    // console.log(req.sessionID)
    if(!user){
        res.json({
            status:false,
@@ -103,39 +116,74 @@ app.get('/api/data',async(req,res)=>{
     res.json({
         status:true,
         email: req.session.user,
-        quote: user.quote
+        ID:user._id
+        
+       
+        
     });
 return
  }
 });
+
+//------------------------------------------------------isLoggedIn---------------------------------------------------------
 app.get('/api/isloggedin',(req,res)=>{
      res.json({
         status: !!req.session.user
     });
 })
-app.get('/api/quote',async(req,res )=>{
-    console.log(req.session.user,req.body.value);
-    const user = await User.findOne({email:req.session.user});
-    if(!user){
-        res.json({
-            success:false,
-            message:'Invalid user'
-        })
-        return;
-    }
-    await User.updateOne({email:req.session.User},{$set:{quote:req.body.value}})
-    res.json({
-        success:true,
-    })
-})
+
+//-------------------------------------------------------logout------------------------------------------------------------
 app.get('/api/logout',(req,res )=>{
     req.session.destroy()
     res.json({
         success:true
     })
 });
+//--------------------------------------------------------Customer_Details--------------------------------------------------
 
+app.post('/api/customer_details',async (req,res)=>{
+    console.log("customer details")
+   
+    const {name,username,email,phonenumber,country,state,city,zipcode,userid}= req.body;
+   
 
+    //check existing users
+    const existingUser = await customer_Details.findOne({userid});
+    // console.log(existingUser);
+
+    if(existingUser){
+        res.json({
+            success:true,
+            message:"already entered details"
+        })
+          }
+    else{
+          
+        console.log("data uploading");   
+        const Customer_Details= new customer_Details(
+            { 
+               name,username,email,phonenumber,country,state,city,zipcode,userid
+            });
+        const result= await Customer_Details .save();
+        console.log (result );
+        
+            // console.log(result);
+        res.json({
+            success: true,
+            message:"Successfully uploaded customer details",
+            
+            
+        });
+        return
+        }
+            // res.end();
+});
+app.get('/api/enteredDetails',(req,res)=>{
+     res.json({
+        status: !!req.session.customer_Details
+    });
+})
+//------------------------------------------------------------server------------------------------------------------------------
 
 const port=  process.env.PORT || 1234;
 app.listen(port,()=>{

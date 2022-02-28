@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
 
     this.Auth.getUserDetails(username, password).subscribe((data: { success: any; message: any; }) => {
       if(data.success) {
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['profile'])
         this.Auth.setLoggedIn(true)
       } else {
         window.alert(data.message)

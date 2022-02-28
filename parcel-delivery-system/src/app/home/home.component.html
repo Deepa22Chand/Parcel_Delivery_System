@@ -1,6 +1,63 @@
-<h1>World's best app</h1>
-<div id="buttons">
-  <a routerLink="/login" class="button">Login</a>
-  <a routerLink="/register" class="button">Register</a>
-  <a routerLink="/dashboard" class="button">Dashboard</a>
-</div>
+<html>
+  <body>
+    <div id="banner">
+      <div>
+        <div id="buttons">
+          <a style="top: 100px" routerLink="/login" class="button">Login</a>
+          <a routerLink="/register" class="button">Register</a>
+          <a routerLink="/dashboard" class="button">Dashboard</a>
+          <div class="dropdown">
+            <span class="button">Service</span>
+            <div class="dropdown-content">
+              <a routerLink="/parcel-details">Parcel delivery Service</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row text-center">
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://www.ups.com/assets/resources/images/icons/Icon_ShippingPage_Quote.png"
+          />
+        </p>
+        <p class="text">NEED A QUOTE?</p>
+        <P>Estimate time and cost for the shipping options we provide</P>
+        <p class="p-tag">
+          <a routerLink="parcel-details" class="tag"> Get a Quote ></a>
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://www.ups.com/assets/resources/images/icons/Icon_ShippingPage_Ready-to-Ship.png"
+          />
+        </p>
+        <p class="text">READY TO SHIP?</p>
+        <P>It's easy to ship. Let's get started.</P>
+        <p class="p-tag">
+          <a routerLink="parcel-details" class="tag"> Ship Now ></a>
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://icon-library.com/images/location-icon-white-png/location-icon-white-png-0.jpg"
+          />
+        </p>
+        <p class="text">Track your parcel?</p>
+        <P>Track your parcel and contact </P>
+        <p class="p-tag">
+          <a routerLink="parcel-details" class="tag"> Get a Quote ></a>
+        </p>
+      </div>
+    </div>
+  </body>
+  <app-footer></app-footer>
+</html>

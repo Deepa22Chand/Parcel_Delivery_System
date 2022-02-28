@@ -4,24 +4,25 @@ import { Observable } from 'rxjs/Observable';
 
 
 
+interface EnteredDetails {
+  status: boolean
+}
 interface isLoggedIn {
   status: boolean
 }
-
-interface quoteStatus {
-  success: boolean
-}
-
 interface logoutStatus {
   success: boolean
 }
 interface myData {
   email: string,
   status: boolean,
-  quote: string
+  ID:any
+  
 }
+
 @Injectable({providedIn: 'root'})
 export class UserService {
+  [x: string]: any;
 
   constructor(private http: HttpClient) { }
 
@@ -29,16 +30,13 @@ export class UserService {
     return this.http.get<myData>('/api/data')
   }
 
-  updateQuote(value: any) {
-    return this.http.post<quoteStatus>('/api/quote', {
-      value
-    })
-  }
 
   isLoggedIn(): Observable<isLoggedIn> {
     return this.http.get<isLoggedIn>('/api/isloggedin')
   }
-
+  enteredDetails(): Observable<isLoggedIn> {
+    return this.http.get<EnteredDetails>('/api/enteredDetails')
+  }
   logout() {
     return this.http.get<logoutStatus>('/api/logout')
   }

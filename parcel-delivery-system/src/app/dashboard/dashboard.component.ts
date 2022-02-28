@@ -8,16 +8,16 @@ import { Router } from '@angular/router';
 })
 export class DashboardComponent implements OnInit {
 
-  quote = "Loading your personal quote"
+ 
   email = "Getting your email..."
-  
+  id="my Id"
   constructor(private user: UserService, private router: Router) { }
 
   ngOnInit() {
-    this.user.getData().subscribe((data: { status: any; quote: string; email: string; }) => {
+    this.user.getData().subscribe((data: { status: any; ID: any; email: string; }) => {
       if(data.status) {
-        this.quote = data.quote
         this.email = data.email
+        this.id=data.ID
         
       } else {
         this.router.navigate(['logout'])
@@ -25,15 +25,6 @@ export class DashboardComponent implements OnInit {
     })
   }
 
-  updateQuote(event:any) {
-    const value = event.target.parentNode.querySelector('#myQuote').value
-    this.user.updateQuote(value).subscribe((data: { success: any; }) => {
-      if(data.success) {
-        alert("Your quote was updated")
-      } else {
-        alert("Some problem")
-      }
-    })
-  }
+
 
 }
