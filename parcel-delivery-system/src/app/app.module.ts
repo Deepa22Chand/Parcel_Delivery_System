@@ -17,8 +17,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { ParcelDetailsComponent } from './parcel-details/parcel-details.component';
 import { FooterComponent } from './footer/footer.component';
 import { CheckoutComponent } from './checkout/checkout.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
+import { VerificationComponent } from './verification/verification.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,13 +33,15 @@ import { PaymentComponent } from './payment/payment.component';
     ParcelDetailsComponent,
     FooterComponent,
     CheckoutComponent,
-    PaymentComponent
+    PaymentComponent,
+    VerificationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

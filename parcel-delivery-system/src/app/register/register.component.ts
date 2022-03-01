@@ -18,6 +18,7 @@ export class RegisterComponent implements OnInit {
     const errors = []
     const target = event.target
     const email = target.querySelector('#email').value
+    const phoneNumber = target.querySelector('#phoneNumber').value
     const password = target.querySelector('#password').value
     const cpassword = target.querySelector('#cpassword').value
 
@@ -31,21 +32,36 @@ export class RegisterComponent implements OnInit {
       errors.push("Passwords do not match")
       
     }
+    if(email !=''){
+       var regex = /[^\s@]+@[^\s@]+\.[^\s@]+/;//anystring@anystring.anystring
+       if (!regex.test(email)) {
+      alert("invalid email");
+      errors.push("invalid email")
+        return ;
+
+    }
+    }
+    if(phoneNumber!='' && phoneNumber.length<10){
+        alert(" Invalid phonenumber \n(Minimum phone number length should be 10)")
+        errors.push(" Invalid phonenumber \n(Minimum phone number length should be 10)")
+        return
+      }
+    
   
 
     // more validation
 
-    return this.register(errors,email,password);
+    return this.register(errors,email,phoneNumber,password);
     // console.log(username, password)
   }
-private register(errors: string | any[],email: undefined,password: undefined){
+private register(errors: string | any[],email: undefined,phoneNumber: undefined,password: undefined){
   if(errors.length === 0) {
       
-      this.auth.registerUser(email, password).subscribe((data: { success: any; message: any; }) => {
+      this.auth.registerUser(email,phoneNumber, password).subscribe((data: { success: any; message: any; }) => {
         console.log(data)
         if(data.success) {
           alert("log in")
-        this.router.navigate(['login'])
+        this.router.navigate(['verify'])
         this.auth.setLoggedIn(true)
       } else {
         window.alert(data.message)

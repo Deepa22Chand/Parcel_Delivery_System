@@ -9,6 +9,7 @@ import { ParcelDetailsComponent } from './parcel-details/parcel-details.componen
 import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
+import { VerificationComponent } from './verification/verification.component';
 
 const routes: Routes = [
    {
@@ -19,13 +20,14 @@ const routes: Routes = [
         component: RegisterComponent
       },
       {
+        path:'verify',
+        component: VerificationComponent
+      },
+      {
         path:'home',
         component:HomeComponent
       },
-      {
-        path: 'logout',
-        component: HomeComponent
-      },
+     
       {
         path: 'dashboard',
         component: DashboardComponent,
@@ -54,6 +56,10 @@ const routes: Routes = [
       {
         path:'parcel-details',
         component:ParcelDetailsComponent
+      },
+       {
+        path:'profile/dashboard',
+        component:DashboardComponent
       },
       {
         path: '',

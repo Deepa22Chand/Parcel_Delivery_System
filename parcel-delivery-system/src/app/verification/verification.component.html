@@ -1,0 +1,52 @@
+<div class="verification">
+  <h1>Verify Your Number</h1>
+  <div class="form">
+    <form #userForm="ngForm" (ngSubmit)="onFormSubmit(userForm)">
+      <table>
+        <tr>
+          <td>Mobile Number:</td>
+          <td>
+            <!-- <input
+          name="mobileNumber"
+          [ngModel]="user.mobileNumber"
+          [pattern]="mobNumberPattern"
+          #mobNumber="ngModel"
+          placeholder="+911234567890"
+        /> -->
+            <input
+              name="mobileNumber"
+              placeholder=" +917986618543"
+              value="{{ phoneNumber }}"
+              disabled
+            />
+            <!-- <div
+          *ngIf="
+            mobNumber.errors && userForm.submitted && !isValidFormSubmitted
+          "
+          [ngClass]="'error'"
+        >
+          <div *ngIf="mobNumber.errors">Mobile number not valid.</div>
+        </div> -->
+          </td>
+        </tr>
+
+        <tr>
+          <td colspan="2">
+            <button (click)="show()">Sending OTP</button>
+          </td>
+        </tr>
+      </table>
+    </form>
+
+    <div class="form2">
+      <form (submit)="verify($event)">
+        <!-- *ngIf="isShown" -->
+        <div *ngIf="isShown" id="msg">
+          <label for=""><strong> OTP</strong> </label>
+          <input type="number" placeholder="OTP" id="otp" required />
+          <input type="submit" value="verify" id="btn" />
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

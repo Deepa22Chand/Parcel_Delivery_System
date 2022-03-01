@@ -13,9 +13,10 @@ export class LogoutComponent implements OnInit {
 
   ngOnInit() {
     this.user.logout().subscribe((data: { success: any; }) => {
+      console.log("logout");
       if(data.success) {
-        this.router.navigate([''])
         this.auth.setLoggedIn(false)
+        this.router.navigate([''])
       } else {
         window.alert('Some problem')
       }

@@ -29,13 +29,61 @@ export class ParcelDetailsComponent implements OnInit {
  pickup_location:string="";
 
   
-  constructor(private router:Router ) { }
- 
+  constructor(private router:Router ) { 
+   
+  }
+
   ngOnInit(): void {
      
   }
 
+
     PostData(){
+       if(this.name==""){
+      alert('Please enter your name.'); 
+      return ;}
+        if(this.username==""){
+      alert('Please enter username.'); 
+      return ;}
+        if(this.country==""){
+      alert('Please enter country name.'); 
+      return ;}
+        if(this.phonenumber==""){
+      alert('Please enter Phone Number.'); 
+      return ;}
+        if(this.state==""){
+      alert('Please enter state.'); 
+      return ;}
+        if(this.city==""){
+      alert('Please enter your city name.'); 
+      return ;}
+        if(this.address==""){
+      alert('Please enter your address.'); 
+      return ;}
+        if(!this.zipcode ){
+      alert('Please enter your zipcode.'); 
+      return ;}
+        if(!this.num_of_packages){
+      alert('Please enter number of packages.'); 
+      return ;}
+        if(!this.weight){
+      alert('Please enter weight of the parcel.'); 
+      return ;}
+      if(!this.length_breadth){
+      alert('Please enter length and breadth of the parcel.'); 
+      return ;}
+      if(!this.Pickup_date){
+      alert('Please enter pickup date of the parcel.'); 
+      return ;}
+      if(!this.earlest_pickupTime){
+      alert('Please enter earliest pickup time for parcel.'); 
+      return ;}
+      if(!this.latest_pickupTime){
+      alert('Please enter latest pickup time for the parcel.'); 
+      return ;}
+      if(!this.pickup_location){
+      alert('Please enter pickup location for the parcel.'); 
+      return ;}
       var data=[];
       data[0]=this.name;
       data[1]=this.username;

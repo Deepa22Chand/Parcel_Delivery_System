@@ -18,6 +18,12 @@ interface myData {
   status: boolean,
   ID:any
   
+  
+}
+interface verify{
+  success: boolean,
+  otp:Number,
+  phoneNumber:any
 }
 
 @Injectable({providedIn: 'root'})
@@ -29,7 +35,8 @@ export class UserService {
   getData() {
     return this.http.get<myData>('/api/data')
   }
-
+  verification() {
+    return this.http.get<verify>('/api/verification') }
 
   isLoggedIn(): Observable<isLoggedIn> {
     return this.http.get<isLoggedIn>('/api/isloggedin')

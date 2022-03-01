@@ -1,4 +1,5 @@
 <!-- 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 email api -->
+
 <form (submit)="registerUser($event)">
   <div class="container">
     <h2>Register Here</h2>
@@ -6,12 +7,13 @@
       <input
         name="email"
         type="email"
-        pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
+        autocomplete="off"
         placeholder="Email*"
         id="email"
-        ngModel
-        [email]="true"
       />
+    </div>
+    <div>
+      <input name="phoneNumber" placeholder="+911234567890" id="phoneNumber" />
     </div>
     <div>
       <input
@@ -29,7 +31,7 @@
         Submit
       </button>
     </div>
-    <p>Already had an account</p>
+    <p>Already have an account</p>
     <span routerLink="login">Login</span>
   </div>
 </form>

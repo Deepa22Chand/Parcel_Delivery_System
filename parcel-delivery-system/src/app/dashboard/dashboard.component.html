@@ -1,5 +1,153 @@
-<div id="message">
-  <p>{{ email }},{{ id }}</p>
+<body>
+  <!-- Vertical navbar -->
+  <div class="vertical-nav bg-white" id="sidebar" [ngClass]="{ show: isShown }">
+    <div class="py-4 px-3 mb-4 bg-light">
+      <div class="media d-flex align-items-center">
+        <img
+          src="https://www.kindpng.com/picc/m/269-2697881_computer-icons-user-clip-art-transparent-png-icon.png"
+          alt="..."
+          width="65"
+          class="mr-3 rounded-circle img-thumbnail shadow-sm"
+        />
+        <div class="media-body">
+          <h4 class="m-0">{{ email }}</h4>
+          <br />
+          <p class="font-weight-light text-muted mb-0">
+            <b
+              >id: <br />
+              {{ id }}</b
+            >
+          </p>
+        </div>
+      </div>
+    </div>
 
-  <a routerLink="/logout" class="button">Logout</a>
-</div>
+    <p
+      class="text-gray font-weight-bold text-uppercase px-3 small pb-4 mb-0"
+      style="font-size: 20px"
+    >
+      Main
+    </p>
+
+    <ul class="nav flex-column bg-white mb-0">
+      <li class="nav-item">
+        <a
+          routerLink="/home"
+          class="nav-link text-dark font-italic bg-light"
+          style="font-size: 20px"
+        >
+          <i class="fa fa-th-large mr-3 text-primary fa-fw"></i>
+          Home
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/home"
+          class="nav-link text-dark font-italic"
+          style="font-size: 20px"
+        >
+          <i class="fa fa-address-card mr-3 text-primary fa-fw"></i>
+          About
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          routerLink="/parcel-details"
+          class="nav-link text-dark font-italic"
+          style="font-size: 20px"
+        >
+          <i class="fa fa-cubes mr-3 text-primary fa-fw"></i>
+          Services
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
+          (click)="logout()"
+          class="nav-link text-dark font-italic"
+          style="font-size: 20px"
+        >
+          <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+          logout
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- End vertical navbar -->
+
+  <!-- Page content holder -->
+  <div class="page-content p-5" id="content">
+    <!-- Toggle button -->
+    <!-- <button
+      #sidebarCollapse
+      id="sidebarCollapse"
+      type="button"
+      class="btn btn-light bg-white rounded-pill shadow-sm px-4 mb-4"
+      data-toggle="vertical-nav"
+      data-target="#sidebar"
+      aria-controls="sidebar"
+      (click)="isShown = !isShown"
+      [attr.aria-expanded]="isShown"
+      aria-label="Toggle navigation"
+    >
+      <i class="fa fa-bars mr-2"></i
+      ><small class="text-uppercase font-weight-bold">Toggle</small>
+    </button> -->
+
+    <!-- Demo content -->
+    <h2 class="display-4 text-white">Parcel Delicery System</h2>
+    <p class="lead text-white mb-2">
+      The package delivery services is designed for the customer's
+      time-sensitive needs
+    </p>
+
+    <div class="separator"></div>
+    <div class="row text-white">
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://www.ups.com/assets/resources/images/icons/Icon_ShippingPage_Quote.png"
+          />
+        </p>
+        <p class="text">NEED A QUOTE?</p>
+        <P class="details"
+          >Estimate time and cost for the shipping options we provide</P
+        ><br />
+        <p class="lead">
+          <a routerLink="/parcel-details" class="tag"> <b>Get a Quote ></b></a>
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://www.ups.com/assets/resources/images/icons/Icon_ShippingPage_Ready-to-Ship.png"
+          />
+        </p>
+        <p class="text">READY TO SHIP?</p>
+        <P class="details">It's easy to ship. Let's get started.</P><br />
+        <p class="p-tag">
+          <a routerLink="/profile" class="tag"> Ship Now ></a>
+        </p>
+      </div>
+
+      <div class="col-sm-4">
+        <p>
+          <img
+            class="image"
+            src="https://icon-library.com/images/location-icon-white-png/location-icon-white-png-0.jpg"
+            width="112px"
+            height="120px"
+          />
+        </p>
+        <p class="text">Track your parcel?</p>
+        <P class="details">Track your parcel and contact </P><br />
+        <p class="p-tag">
+          <a routerLink="/parcel-details" class="tag"> Get a Quote ></a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <!-- End demo content -->
+</body>

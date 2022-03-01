@@ -16,13 +16,14 @@ h2 {
   justify-content: center;
   align-items: center;
   padding: 50px;
-  background: rgb(168, 151, 230);
+  background: linear-gradient(135deg, #71b7e6, #9b59b6);
   border-radius: 20px;
 }
 
 input#email,
 input#password,
-input#cpassword {
+input#cpassword,
+input#phoneNumber {
   outline: 0;
   font-size: 20px;
   padding: 5px 10px;

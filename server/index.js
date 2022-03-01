@@ -6,6 +6,8 @@ const User = require('./models/users');
 const session = require('express-session');
 const customer_Details = require('./models/user_details')
 const parcel_details= require('./models/parcel-details');
+const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','5b60cefcd741e4c62894119607747e3e')
+
 app.use(session({
     secret:'ascjhgasiudlfg342hvjbgu432g5uv5u324v',
     saveUnintialized:false,
@@ -28,10 +30,12 @@ app.use(bodyParser.json());
 //----------------------------------------------------------Login-----------------------------------------------------------
 
 app.post('/api/login', async(req,res)=>{
+   
     
     const {email,password}= req.body;
     // console.log(email,password);
     const resp = await User.findOne({email,password});
+     
     // const user= new User(
     //     {
     //         email:"deepa01@gmail.com",
@@ -64,8 +68,8 @@ app.post('/api/login', async(req,res)=>{
 //----------------------------------------------------------Register--------------------------------------------------------
 app.post('/api/register',async (req,res)=>{
     console.log("Register")
-    const {email,password}= req.body;
-    console.log(email,password);
+    const {email,phoneNumber,password}= req.body;
+    console.log(email,phoneNumber,password);
 
     // check existing users
     const existingUser = await User.findOne({email});
@@ -83,6 +87,7 @@ app.post('/api/register',async (req,res)=>{
         const user= new User(
             { 
                 email,
+                phoneNumber,
                 password    
             });
         const result= await user.save();
@@ -98,9 +103,38 @@ app.post('/api/register',async (req,res)=>{
         });
         return
         }
+        
             // res.end();
 });
+//------------------------------------------------------Phone Number verification ------------------------------------------------------
 
+app.get('/api/verification',async(req,res)=>{
+    
+    const sendOTP= Math.floor(100000 + Math.random() * 900000);
+    const phoneNumber='+917986618543';
+    // sendTextMessage(sendOTP);
+//     var storeData= JSON.parse(localStorage.getItem('data')||'{}')
+//  const name= storeData[0];
+//     console.log(name);
+client.messages.create({
+    body:sendOTP ,
+    to:phoneNumber,
+    from:'+18597626394'
+}).then(message=>console.log(message))
+.catch(error=>console.log(error))
+
+    // res.send(`<div>
+    // Hi there you msg has been send;
+    // </div>`);
+
+    res.json({
+        status:true,
+        otp:sendOTP,
+        phoneNumber:phoneNumber  
+    });
+
+
+})
 //--------------------------------------------------return data(email,id)-----------------------------------------------------
 app.get('/api/data',async(req,res)=>{
     const user = await User.findOne({email:req.session.user })
@@ -134,6 +168,7 @@ app.get('/api/isloggedin',(req,res)=>{
 
 //-------------------------------------------------------logout------------------------------------------------------------
 app.get('/api/logout',(req,res )=>{
+    console.log("logout")
     req.session.destroy()
     res.json({
         success:true

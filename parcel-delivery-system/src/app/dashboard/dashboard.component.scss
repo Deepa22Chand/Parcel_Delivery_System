@@ -1,26 +1,116 @@
-#message {
-  display: flex;
-  font-size: 40px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: absolute;
+// #message {
+//   display: flex;
+//   font-size: 40px;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   position: absolute;
+//   width: 100%;
+//   height: 100%;
+// }
+
+// .button {
+//   padding: 20px;
+//   color: white;
+//   font-size: 30px;
+//   border-radius: 10px;
+//   background: black;
+//   border: 1px solid black;
+//   text-decoration: none;
+//   margin: 20px;
+// }
+
+// .button:hover {
+//   background: white;
+//   color: black;
+// }
+.vertical-nav {
+  min-width: 23rem;
+  width: 23rem;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.4s;
+}
+
+.page-content {
+  width: calc(100% - 23rem);
+  margin-left: 23rem;
+  transition: all 0.4s;
+}
+
+/* for toggle behavior */
+
+#sidebar.active {
+  margin-left: -23rem;
+}
+
+#content.active {
   width: 100%;
-  height: 100%;
+  margin: 0;
 }
 
-.button {
-  padding: 20px;
-  color: white;
-  font-size: 30px;
-  border-radius: 10px;
-  background: black;
-  border: 1px solid black;
-  text-decoration: none;
-  margin: 20px;
+@media (max-width: 768px) {
+  #sidebar {
+    margin-left: -23rem;
+  }
+  #sidebar.active {
+    margin-left: 0;
+  }
+  #content {
+    width: 100%;
+    margin: 0;
+  }
+  #content.active {
+    margin-left: 19rem;
+    width: calc(100% - 23rem);
+  }
 }
 
-.button:hover {
-  background: white;
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSE
+* ==========================================
+*
+*/
+
+body {
+  background: #599fd9;
+  background: -webkit-linear-gradient(to right, #81b0d6, #71d8be);
+  background: linear-gradient(to right, #599fd9, #c2e59c);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.separator {
+  margin: 4rem 0;
+  border-bottom: 1px dashed #fff;
+}
+
+.text-uppercase {
+  letter-spacing: 0.1em;
+}
+
+.text-gray {
+  color: #aaa;
+}
+.text,
+.tag {
   color: black;
+  font-size: 25px;
+  font-weight: bolder;
+}
+
+.tag,
+.details {
+  font-size: 20px;
+}
+.tag {
+  text-decoration: none;
+  background-color: #2471b1;
+  padding: 10px;
+  border-radius: 9px;
 }

@@ -55,15 +55,17 @@ export class AuthService {
     })
   }
 
-  registerUser(email: any, password: any) {
+  registerUser(email: any,phoneNumber:any, password: any) {
     return this.http.post<registerResponse>('/api/register', {
       email,
       password,
+      phoneNumber
       
       
       
     })
   }
+  
   customerDetails(name:any,username:any,email:any,phonenumber:any,country:any,state:any,city:any,zipcode:any,userid:any){
      return this.http.post<customer_Details>('/api/customer_details' , {
       name,username,email,phonenumber,country,city,state,zipcode,userid
