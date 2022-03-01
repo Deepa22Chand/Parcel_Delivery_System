@@ -16,6 +16,9 @@ import { LogoutComponent } from './logout/logout.component';
 import { ProfileComponent } from './profile/profile.component';
 import { ParcelDetailsComponent } from './parcel-details/parcel-details.component';
 import { FooterComponent } from './footer/footer.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { FormsModule } from '@angular/forms';
+import { PaymentComponent } from './payment/payment.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,12 +30,15 @@ import { FooterComponent } from './footer/footer.component';
     LogoutComponent,
     ProfileComponent,
     ParcelDetailsComponent,
-    FooterComponent
+    FooterComponent,
+    CheckoutComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

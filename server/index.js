@@ -5,7 +5,7 @@ const monggose = require('mongoose');
 const User = require('./models/users');
 const session = require('express-session');
 const customer_Details = require('./models/user_details')
-
+const parcel_details= require('./models/parcel-details');
 app.use(session({
     secret:'ascjhgasiudlfg342hvjbgu432g5uv5u324v',
     saveUnintialized:false,
@@ -182,7 +182,41 @@ app.get('/api/enteredDetails',(req,res)=>{
      res.json({
         status: !!req.session.customer_Details
     });
+
 })
+
+//--------------------------------------------------------------Parcel Details--------------------------------------------------
+app.post('/api/parcel_details',async (req,res)=>{
+    console.log("parcel details")
+   
+    const {name,username,country,phonenumber,phonenumber2,state,city,zipcode,userid,address,num_of_packages,weight,length_breadth, Pickup_date,earlest_pickupTime,latest_pickupTime,pickup_location,amount}= req.body;
+   
+
+    //check existing users
+    
+    console.log(name,username,country,phonenumber,phonenumber2,state,city,zipcode,userid,address,num_of_packages,weight,length_breadth, Pickup_date,earlest_pickupTime,latest_pickupTime,pickup_location,amount);
+
+  
+          
+        console.log("data uploading");   
+        const Parcel_details= new parcel_details(
+            { 
+              name,username,country,phonenumber,phonenumber2,state,city,zipcode,userid,address,num_of_packages,weight,length_breadth, Pickup_date,earlest_pickupTime,latest_pickupTime,pickup_location,amount
+            });
+        const result= await Parcel_details.save();
+        console.log (result );
+        
+            // console.log(result);
+        res.json({
+            success: true,
+            message:"Successfully uploaded parcel details",
+            
+            
+        });
+        
+        
+            // res.end();
+});
 //------------------------------------------------------------server------------------------------------------------------------
 
 const port=  process.env.PORT || 1234;

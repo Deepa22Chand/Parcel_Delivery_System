@@ -1,6 +1,9 @@
 const mongoose = require ('mongoose');
 const parcel_details= new mongoose.Schema({
-    
+        userid:String,
+      
+        name:String,
+        
         username:String,
         country:String,
         phonenumber:String,
@@ -9,13 +12,14 @@ const parcel_details= new mongoose.Schema({
         city:String,
         address:String,
         zipcode:Number,
-        number_of_package:Number,
+        num_of_packages:String,
         weight:Number,
-        length_and_bredth:String,
-        pickupdate:Date,
-        earlest_pickup_time:String,
-        preferred_pickup_time:String,
-        preferred_pickup_location:String,
+        length_breadth:String,
+        Pickup_date:String,
+        earlest_pickupTime:String,
+        latest_pickupTime:String,
+        pickup_location:String,
+          amount:String,
 
 });
 const Parcel_details = mongoose.model('Parcel_details', parcel_details);

@@ -21,15 +21,26 @@ export class RegisterComponent implements OnInit {
     const password = target.querySelector('#password').value
     const cpassword = target.querySelector('#cpassword').value
 
-    if(password != cpassword) {
+    if(password.trim().length<=6) {
+      alert("Passwords length should be greater than 6");
+      errors.push("Passwords length should be greater than 6")
+      return
+    }
+    if(password != cpassword ) {
       alert("Passwords do not match");
       errors.push("Passwords do not match")
       
     }
+  
 
     // more validation
 
-    if(errors.length === 0) {
+    return this.register(errors,email,password);
+    // console.log(username, password)
+  }
+private register(errors: string | any[],email: undefined,password: undefined){
+  if(errors.length === 0) {
+      
       this.auth.registerUser(email, password).subscribe((data: { success: any; message: any; }) => {
         console.log(data)
         if(data.success) {
@@ -41,8 +52,6 @@ export class RegisterComponent implements OnInit {
       }
       })
     }
-    // console.log(username, password)
-  }
-
+}
 
 }

@@ -47,7 +47,7 @@ export class ProfileComponent implements OnInit {
     
     this.auth.customerDetails(fullname,username,email,phonenumber,country,state,city,zipcode,userid).subscribe((data: { success: any; message: any; }) => {
       if(data.success) {
-        this.router.navigate(['dashboard'])
+        this.router.navigate([''])
         this.auth.setEnterDetails(true)
       } else {
         window.alert(data.message)
