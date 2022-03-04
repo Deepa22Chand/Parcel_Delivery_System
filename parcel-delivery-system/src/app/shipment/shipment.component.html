@@ -38,6 +38,9 @@
             <p>Address:{{ Address }}</p>
           </div>
         </div>
+        <button (click)="orderReceived()" type="button" class="btn btn-danger">
+          Order Received
+        </button>
       </ng-container>
       <ng-container *ngIf="visible1">
         <div class="p-3 mb-2 bg-light text-black shadow-sm p-3" id="content">
@@ -58,6 +61,7 @@
                 name="name"
                 [(ngModel)]="name"
                 placeholder="Enter your name"
+                required
               />
               <span class="focus-input100"></span>
             </div>
@@ -87,6 +91,7 @@
                 name="message"
                 placeholder="Your message here..."
                 [(ngModel)]="msg"
+                required
               ></textarea>
               <span class="focus-input100"></span>
             </div>
@@ -107,6 +112,43 @@
                 </span>
               </button>
             </div>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="visible3">
+        <div class="p-3 mb-2 bg-light text-black shadow-sm p-3" id="content">
+          <h4>Feedback</h4>
+
+          <div
+            class="bg-white shadow-sm p-5"
+            style="margin-top: 40px; border-radius: 15px"
+          >
+            Successfully Submitted <br />
+            Thankyou for your feedback
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="visible2">
+        <div class="p-3 mb-2 bg-light text-black shadow-sm p-3" id="content">
+          <h4>Shipping Details</h4>
+
+          <div
+            class="bg-white shadow-sm p-5"
+            style="margin-top: 40px; border-radius: 15px"
+          >
+            Shipping order None <br />
+            To have a new order go services
+            <p
+              routerLink="/parcel-details"
+              style="
+                text-align: center;
+                color: blue;
+                font-weight: bold;
+                cursor: pointer;
+              "
+            >
+              Services
+            </p>
           </div>
         </div>
       </ng-container>

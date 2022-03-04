@@ -55,7 +55,21 @@ return this.amount=this.total5
    }
 
   ngOnInit(): void {
-    var storeData= JSON.parse(localStorage.getItem('data')||'{}')
+    
+
+
+
+  
+    this.user.getData().subscribe((data: { status: any; ID: any; email: string; }) => {
+      if(data.status) {
+        this.customer_id=data.ID
+        
+      } 
+      // else {
+      //   this.router.navigate(['dashboard'])
+      // }
+    })
+var storeData= JSON.parse(localStorage.getItem('data')||'{}')
     this.name= storeData[0];
     this.username=storeData[1];
     this.country=storeData[2];
@@ -76,27 +90,17 @@ return this.amount=this.total5
   this.amount=this.num_of_packages*100;
   this.total5=this.num_of_packages*100;
  
-  this.totalamount=this.num_of_packages*100;
+this.totalamount=this.num_of_packages*100;
 
-  storeData[16]=this.amount
 localStorage.setItem("parcel", JSON.stringify(storeData));
-
-  
-    this.user.getData().subscribe((data: { status: any; ID: any; email: string; }) => {
-      if(data.status) {
-        this.customer_id=data.ID
-        
-      } 
-      // else {
-      //   this.router.navigate(['dashboard'])
-      // }
-    })
 
      
    
 
 }
+
  parcel_details(event: { preventDefault: () => void; target: any; }){
+   
      console.log("updating parcel details1")
     event.preventDefault()
 
@@ -108,6 +112,7 @@ localStorage.setItem("parcel", JSON.stringify(storeData));
 
     console.log(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount);
     this.auth.parcel_details(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount) .subscribe((data: { success: any; message: any; }) => {
+      localStorage.setItem("amount",JSON.stringify(this.amount));
       console.log("updating parcel details3",this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount)
       if(data.success) {
         this.router.navigate(['payment'])

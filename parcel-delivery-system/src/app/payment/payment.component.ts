@@ -52,13 +52,15 @@ export class PaymentComponent implements OnInit {
       alert('Please enter card cvv.'); 
       return ;}
       this.router.navigate(['dashboard']);
-      var storeData= JSON.parse(localStorage.getItem('parcel')||'{}')
+      var storeData= JSON.parse(localStorage.getItem('parcel')||'{}');
+      var amount= JSON.parse(localStorage.getItem("amount")||'{}')
+
   
-     console.log(userid,storeData[0],storeData[3],storeData[9],storeData[10],storeData[12],storeData[13],storeData[14],storeData[15] ,storeData[7],storeData[16])
-      this.auth.parcel_delivery(userid,storeData[0],storeData[3],storeData[9],storeData[10],storeData[12],storeData[13],storeData[14],storeData[15] ,storeData[7],storeData[16]).subscribe((data: { success: any; message: any; }) => {
+     console.log(userid,storeData[0],storeData[3],storeData[9],storeData[10],storeData[12],storeData[13],storeData[14],storeData[15] ,storeData[7],amount)
+      this.auth.parcel_delivery(userid,storeData[0],storeData[3],storeData[9],storeData[10],storeData[12],storeData[13],storeData[14],storeData[15] ,storeData[7],amount).subscribe((data: { success: any; message: any; }) => {
       // console.log("updating parcel details3")
       
-        this.router.navigate(['dashboard'])
+        this.router.navigate(['shipment'])
         
     })
    

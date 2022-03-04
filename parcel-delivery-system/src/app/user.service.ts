@@ -13,6 +13,23 @@ interface isLoggedIn {
 interface logoutStatus {
   success: boolean
 }
+interface deletion{
+  success:true
+}
+interface history{
+  email: string,
+  status: boolean,
+  ID:any,
+  phoneNumber:any,
+  Number:any,
+  Weight:any,
+  date:string,
+  Total_amount:any,
+  Address:any,
+  latest_pickupTime:any,
+  earlest_pickupTime:any,
+  pickup_location:any
+}
 interface myData {
   email: string,
   status: boolean,
@@ -56,5 +73,10 @@ export class UserService {
   logout() {
     return this.http.get<logoutStatus>('/api/logout')
   }
-
+  delete(){
+    return this.http.delete<deletion>('/api/delete')
+  }
+  orderHistory(){
+    return this.http.get<history>('/api/orderHistory')
+  }
 }

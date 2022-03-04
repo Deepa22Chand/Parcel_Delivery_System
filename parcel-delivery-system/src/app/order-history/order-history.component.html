@@ -1,0 +1,54 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <ng-container *ngIf="visible">
+        <div class="p-3 mb-2 bg-light text-black shadow-sm p-3" id="content">
+          <h4>Shipping History</h4>
+
+          <div
+            class="bg-white shadow-sm p-3"
+            style="margin-top: 40px; border-radius: 15px"
+          >
+            <h2>
+              User ID: <span>{{ id }}</span>
+            </h2>
+            <h4 class="p-3 mb-2 bg-light text-black shadow-sm p-3">
+              Number Of Packages: <span>{{ number_of_packages }}</span>
+            </h4>
+            <h4 class="p-3 mb-2 bg-light text-black shadow-sm p-3">
+              Weight of Packages: <span>{{ Weight }}</span>
+            </h4>
+            <h4 class="p-3 mb-2 bg-light text-black shadow-sm p-3">
+              Address: <span>{{ Address }}</span>
+            </h4>
+            <h4 class="p-3 mb-2 bg-light text-black shadow-sm p-3">
+              Pickup Location: <span>{{ pickup_location }}</span>
+            </h4>
+            <h4 class="p-3 mb-2 bg-light text-black shadow-sm p-3">
+              Pickup Date: <span>{{ pickup_date }}</span>
+            </h4>
+            <hr style="border: 3px solid gray" />
+            <h4 class="p-2 bg-light text-black shadow-sm p-3">
+              Total Amount:
+              <span>{{ Total_amount }}</span>
+            </h4>
+          </div>
+        </div>
+      </ng-container>
+      <ng-container *ngIf="visible1">
+        <div class="p-3 mb-2 bg-light text-black shadow-sm p-3" id="content">
+          <h4>Shipping History</h4>
+
+          <div
+            class="bg-white shadow-sm p-5"
+            style="margin-top: 40px; border-radius: 15px"
+          >
+            Empty Shipping History <br />
+            To have a new order go services
+            <a routerLink="/parcel-details">Services</a>
+          </div>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>

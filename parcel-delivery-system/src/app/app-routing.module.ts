@@ -4,23 +4,19 @@ import { AuthGuard } from './auth.guard';
 import { CheckoutComponent } from './checkout/checkout.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
+import { OrderHistoryComponent } from './order-history/order-history.component';
+
 import { ParcelDetailsComponent } from './parcel-details/parcel-details.component';
 import { PaymentComponent } from './payment/payment.component';
 import { ProfileComponent } from './profile/profile.component';
-import { RegisterComponent } from './register/register.component';
+
 import { ShipmentComponent } from './shipment/shipment.component';
+import { SignupAndLoginComponent } from './signup-and-login/signup-and-login.component';
 import { VerificationComponent } from './verification/verification.component';
 
 const routes: Routes = [
    {
-        path: 'login',
-        component: LoginComponent
-      },{
-        path: 'login/register',
-        component: RegisterComponent
-      },
-      {
+      
         path:'verify',
         component: VerificationComponent
       },
@@ -28,15 +24,15 @@ const routes: Routes = [
         path:'home',
         component:HomeComponent
       },
+      {
+        path:'signup_and_login',
+        component:SignupAndLoginComponent
+      },
      
       {
         path: 'dashboard',
         component: DashboardComponent,
         canActivate: [AuthGuard]
-      },
-      {
-        path: 'register',
-        component: RegisterComponent
       },
       {
         path:'checkout',
@@ -50,21 +46,22 @@ const routes: Routes = [
         path:'payment',
         component:PaymentComponent
       },
-       {
-        path: 'register/login',
-        component: LoginComponent
-      },
+      
       {
         path:'profile',
         component:ProfileComponent
       },
       {
         path:'parcel-details',
-        component:ParcelDetailsComponent
+        component:ParcelDetailsComponent,
+        canActivate: [AuthGuard]
       },
        {
         path:'profile/dashboard',
         component:DashboardComponent
+      },{
+        path:'order-history',
+        component:OrderHistoryComponent
       },
       {
         path: '',

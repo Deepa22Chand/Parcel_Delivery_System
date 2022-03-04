@@ -10,7 +10,7 @@ const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','16a278cc17
 const parcel_delivery=require('./models/parcel-delivery');
 const { ObjectId } = require('mongodb');
 const { addAbortSignal } = require('nodemailer/lib/xoauth2');
-
+const delivery_history=require('./models/delivery_history')
 app.use(session({
     secret:'ascjhgasiudlfg342hvjbgu432g5uv5u324v',//23 The secret is used to hash the session.session is then protected against session hijacking 
     saveUnintialized:false,
@@ -161,10 +161,6 @@ app.get('/api/data',async(req,res)=>{
 //    const existingUser = await parcel_delivery.find({"_id": ObjectId(shippingID)});
 //        console.log("user",existingUser);
 
-
-// //--------------------------------------------------------
-//     console.log("my id",id);
-    // console.log(req.sessionID)
    if(!user){
        res.json({
            status:false,
@@ -338,20 +334,67 @@ app.post('/api/parcel_delivery',async (req,res)=>{
             // res.end();
 });
 
-//-------------------------------------------------------------Shipping Details-------------------------------------------------------
 
-app.get('/api/shipment',async(req,res)=>{
-   const Parcel_delivery = await parcel_delivery.findOne({email:req.session.user })
-   const email=req.session.user
-   console.log(email);
-   const existingUser = await User.findOne({email});
-   console.log(existingUser)
-    console.log(existingUser._id)
-    const User_phoneNumber= existingUser.phoneNumber;
-    console.log(User_phoneNumber)
-    // console.log(existingUser.password)
+//---------------------------------------------------------Delete ---------------------------------------------------
+app.delete('/api/delete',async(req,res)=>{
+const user = await User.findOne({email:req.session.user })
+    const email=req.session.user
+    console.log(user);
+    const shippingID=user.shippingID;
+   console.log(shippingID);
+   if(!user){
+       res.json({
+           status:false,
+           message:'User was deleted'
+       })
+       return 
+   }else{
+      if(shippingID!=undefined){
+          user.shippingID=undefined;
+          console.log("order completion Confirmation ")
+          const existingUser = await parcel_delivery.find({"_id": ObjectId(shippingID)});
+          var data = await delivery_history.insertMany(existingUser[0]);
+          user.orderHistory=data[0]._id;
+        //   console.log(existingUser,data,data._id,data[0]._id);
+        await existingUser[0].delete();
+        await user.save();
+        res.json({
+           status:true,
+           
+       })
+      }
+           }
 
 })
+//============================================================order-history=========================================================
+app.get('/api/orderHistory',async(req,res)=>{
+ const user = await User.findOne({email:req.session.user })
+    const usersid= user._id;
+    const orderHistory=user.orderHistory;
+    if(orderHistory!=undefined){
+        const existingUser = await delivery_history.find({"_id": ObjectId(orderHistory)});
+        console.log(orderHistory);
+         res.json({
+            status:true,
+            email: req.session.user,
+            ID:usersid,
+            phoneNumber:user.phoneNumber,
+            Number:existingUser[0].num_of_packages,
+            Weight:existingUser[0].weight,
+            date:existingUser[0].Pickup_date,
+            Total_amount:existingUser[0].amount,
+            Address:existingUser[0].address ,
+            latest_pickupTime:existingUser[0].latest_pickupTime,
+            earlest_pickupTime:existingUser[0].earlest_pickupTime,
+            pickup_location:existingUser[0].pickup_location
+           
+       })
+    }else{
+        res.json({
+            status:false
+        })
+    }
+});
 //------------------------------------------------------------Feedback-------------------------------------------------------------
 app.post('/api/feedback', async(req,res)=>{
    

@@ -4,6 +4,7 @@ const UserSchema = new mongoose.Schema({
     phoneNumber:String,
     password:String,
     shippingID:String,
+    orderHistory:String,
     msg:String
     // verified:Boolean,
     // services:{
