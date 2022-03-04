@@ -6,9 +6,10 @@ const User = require('./models/users');
 const session = require('express-session');
 const customer_Details = require('./models/user_details')
 const parcel_details= require('./models/parcel-details');
-const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','56318617ca8cb59b827e717c998c3bfe')
+const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','16a278cc17353503c69400e1628a22c9')
 const parcel_delivery=require('./models/parcel-delivery');
 const { ObjectId } = require('mongodb');
+const { addAbortSignal } = require('nodemailer/lib/xoauth2');
 
 app.use(session({
     secret:'ascjhgasiudlfg342hvjbgu432g5uv5u324v',//23 The secret is used to hash the session.session is then protected against session hijacking 
@@ -351,6 +352,35 @@ app.get('/api/shipment',async(req,res)=>{
     // console.log(existingUser.password)
 
 })
+//------------------------------------------------------------Feedback-------------------------------------------------------------
+app.post('/api/feedback', async(req,res)=>{
+   
+    
+    const {email,name,msg}= req.body;
+    const user = await User.findOne({email:req.session.user })
+    
+    const usersid= user._id;
+    const shippingID=user.shippingID;
+//    console.log(email,usersid,shippingID);
+   if(shippingID==undefined){
+       res.json({
+           status:false,
+           message:'no shipping order'
+       })
+       return 
+   }else{
+       
+        
+        user.msg=msg;
+        await user.save();
+         res.json({
+           status:true,
+           message:'feedback '
+       })
+    }
+       
+   
+});
 //------------------------------------------------------------server------------------------------------------------------------
 
 const port=  process.env.PORT || 1234;

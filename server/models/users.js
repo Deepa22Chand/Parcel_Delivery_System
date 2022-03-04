@@ -3,7 +3,8 @@ const UserSchema = new mongoose.Schema({
     email:String,
     phoneNumber:String,
     password:String,
-    shippingID:String
+    shippingID:String,
+    msg:String
     // verified:Boolean,
     // services:{
     //     name:String,

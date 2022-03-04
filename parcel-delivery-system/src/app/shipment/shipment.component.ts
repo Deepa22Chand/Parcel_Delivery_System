@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
 import { UserService } from '../user.service';
 @Component({
   selector: 'app-shipment',
@@ -17,8 +18,13 @@ Address:any;
 latest_pickupTime:any;
 earlest_pickupTime:any;
 pickup_location:any;
-
-  constructor(private user:UserService) {
+name:string="";
+msg:string="";
+submit(){
+  console.log(this.email,this.name,this.msg);
+  this.auth.feedback(this.email,this.name,this.msg).subscribe();
+}
+  constructor(private user:UserService,private auth:AuthService) {
      this.user.getData().subscribe((data: { status: any; ID: any; email: string;phoneNumber:any;Number:any;Weight:any;date:string;Total_amount:any;Address:any;latest_pickupTime:any;earlest_pickupTime:any;pickup_location:any; }) => {
       
         this.email = data.email

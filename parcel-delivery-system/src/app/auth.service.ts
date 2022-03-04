@@ -90,4 +90,9 @@ export class AuthService {
     })
   }
 
+  feedback(name:any,email:any,msg:any){
+    return this.http.post('api/feedback',{
+      email,name,msg
+    })
+  }
 }
