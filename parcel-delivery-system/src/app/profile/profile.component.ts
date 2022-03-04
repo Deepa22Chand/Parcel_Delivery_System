@@ -22,7 +22,46 @@ export class ProfileComponent implements OnInit {
       // else {
       //   this.router.navigate(['dashboard'])
       // }
-    })  
+    }) 
+    
+    
+    //    if(email !=''){
+    //    var regex = /[^\s@]+@[^\s@]+\.[^\s@]+/;//anystring@anystring.anystring
+    //    if (!regex.test(email)) {
+    //   alert("invalid email");
+    //     return ;
+    // }
+    // }
+    // if(fullname!=''){
+    //   alert("Please enter your fullname");
+    //   return
+    // }
+    // if(username!=''){
+    //   alert("Please enter your username");
+    //   return
+    // }
+    // if(phonenumber!=''){
+    //   if(phonenumber.length<10){
+    //     alert("Invalid phonenumber !! \nPlease enter your phonenumber");
+    //   }
+    //   return
+    // }
+    // if(country!=''){
+    //   alert("Please enter your country name");
+    //   return
+    // }
+    // if(state!=''){
+    //   alert("Please enter your state name");
+    //   return
+    // }
+    // if(city!=''){
+    //   alert("Please enter your city name");
+    //   return
+    // }
+    // if(zipcode!=''){
+    //   alert("Please enter your zipcode");
+    //   return
+    // }
     
 
   }
@@ -43,44 +82,7 @@ export class ProfileComponent implements OnInit {
     const zipcode = target.querySelector('#zipcode').value
     const userid = target.querySelector('#userid').value
     
-  
-       if(email !=''){
-       var regex = /[^\s@]+@[^\s@]+\.[^\s@]+/;//anystring@anystring.anystring
-       if (!regex.test(email)) {
-      alert("invalid email");
-        return ;
-    }
-    }
-    if(fullname!=''){
-      alert("Please enter your name");
-      return
-    }
-    if(username!=''){
-      alert("Please enter your username");
-      return
-    }
-    if(phonenumber!=''){
-      if(phonenumber.length<10){
-        alert("Invalid phonenumber !! \nPlease enter your phonenumber");
-      }
-      return
-    }
-    if(country!=''){
-      alert("Please enter your country name");
-      return
-    }
-    if(state!=''){
-      alert("Please enter your state name");
-      return
-    }
-    if(city!=''){
-      alert("Please enter your city name");
-      return
-    }
-    if(zipcode!=''){
-      alert("Please enter your name");
-      return
-    }
+  console.log(fullname,username,email,phonenumber,country,state,city,zipcode,userid);
 
     this.auth.customerDetails(fullname,username,email,phonenumber,country,state,city,zipcode,userid).subscribe((data: { success: any; message: any; }) => {
       if(data.success) {

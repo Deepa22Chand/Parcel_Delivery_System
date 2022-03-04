@@ -1,10 +1,9 @@
-const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','5b60cefcd741e4c62894119607747e3e')
+const client= require('twilio')('AC37e0cb50c6ba2216cb334f503e634d4c','56318617ca8cb59b827e717c998c3bfe')
 const express= require ('express');
+const User = require('./models/users');
 const app=express();
 app.get('/',(req,res)=>{
-    var storeData= JSON.parse(localStorage.getItem('data')||'{}')
-    this.name= storeData[0];
-    console.log(this.name);
+    const user = await User.findOne({email:req.session.user })
     const sendOTP= Math.floor(100000 + Math.random() * 900000);
     // sendTextMessage(sendOTP);
     client.messages.create({

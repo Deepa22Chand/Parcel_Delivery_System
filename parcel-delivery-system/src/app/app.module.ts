@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { AdminComponent } from './admin/admin.component';
+
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import {  HttpClientModule } from '@angular/common/http';
@@ -20,11 +20,12 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PaymentComponent } from './payment/payment.component';
 import { VerificationComponent } from './verification/verification.component';
+import { ShipmentComponent } from './shipment/shipment.component';
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    AdminComponent,
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
@@ -34,7 +35,9 @@ import { VerificationComponent } from './verification/verification.component';
     FooterComponent,
     CheckoutComponent,
     PaymentComponent,
-    VerificationComponent
+    VerificationComponent,
+    ShipmentComponent,
+
   ],
   imports: [
     BrowserModule,

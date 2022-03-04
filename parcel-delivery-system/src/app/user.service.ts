@@ -16,7 +16,16 @@ interface logoutStatus {
 interface myData {
   email: string,
   status: boolean,
-  ID:any
+  ID:any,
+  phoneNumber:any,
+  Number:any,
+  Weight:any,
+  date:string,
+  Total_amount:any,
+  Address:any,
+  latest_pickupTime:any,
+  earlest_pickupTime:any,
+  pickup_location:any
   
   
 }

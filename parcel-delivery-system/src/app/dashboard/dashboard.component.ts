@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
-import { LogoutComponent } from '../logout/logout.component';
+
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',

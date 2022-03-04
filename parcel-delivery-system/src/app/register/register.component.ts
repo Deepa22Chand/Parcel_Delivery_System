@@ -61,7 +61,7 @@ private register(errors: string | any[],email: undefined,phoneNumber: undefined,
         console.log(data)
         if(data.success) {
           alert("log in")
-        this.router.navigate(['verify'])
+        this.router.navigate(['login'])
         this.auth.setLoggedIn(true)
       } else {
         window.alert(data.message)

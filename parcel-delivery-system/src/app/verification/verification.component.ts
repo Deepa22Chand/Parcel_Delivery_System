@@ -15,18 +15,28 @@ export class VerificationComponent implements OnInit {
   phoneNumber:string="";
   OTP:string= "my OTP";
   ngOnInit(): void {
+    this.users.getData().subscribe((data: { status: any; ID: any; email: string;phoneNumber:string }) => {
+      if(data.status) {
+        this.phoneNumber=data.phoneNumber
+        
+      } 
+      // else {
+      //   this.router.navigate(['dashboard'])
+      // }
+    }) 
   
   }
   constructor(private router:Router,private users:UserService){}
   show(){
  this.isShown = ! this.isShown;
+  
   // this.OTP=Math.floor(100000 + Math.random() * 900000);
   // console.log(this.OTP);
   this.users.verification().subscribe((data: { success: any; otp: any; phoneNumber:any}) => {
       
-        console.log("successfully Send OTP",data.otp)
+        console.log("successfully Send OTP",data.otp,data.phoneNumber)
         this.OTP=data.otp;
-        this.phoneNumber=data.phoneNumber;
+        
         
       
     })
@@ -42,8 +52,8 @@ export class VerificationComponent implements OnInit {
      window.alert(`Wrong OTP!! \nplease try again`);
    }
    else{
-     window.alert("Verification Completed");
-     this.router.navigate(['login'])
+    //  window.alert("Verification Completed");
+     this.router.navigate(['dashboard'])
    }
 }
  title = 'FormValidation';  
@@ -62,6 +72,7 @@ export class VerificationComponent implements OnInit {
 } 
 
 }
-export class User {  
+export class User {
+ [x: string]: any;  
  mobileNumber ?: string;  
 }

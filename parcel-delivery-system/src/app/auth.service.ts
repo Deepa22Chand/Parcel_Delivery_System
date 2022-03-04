@@ -19,7 +19,11 @@ interface parcel_Details{
    success: boolean,
   message: string
 }
+interface parcelDelivery_details{
+  success: boolean,
+  message: string,
 
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -77,6 +81,12 @@ export class AuthService {
        return this.http.post<parcel_Details>('/api/parcel_details' , {
       name,username,country,phonenumber,phonenumber2,state,city,zipcode,userid,address,num_of_packages,weight,length_breadth, Pickup_date,earlest_pickupTime,latest_pickupTime,pickup_location,amount
       
+    })
+  }
+
+  parcel_delivery(userid: any,name: any,phoneNumber: any,num_of_packages: any,weight: any,Pickup_date: any,earlest_pickupTime: any,latest_pickupTime: any,pickup_location: any,address:any,amount: any){
+    return this.http.post<parcelDelivery_details>('/api/parcel_delivery',{
+      userid,name,phoneNumber,num_of_packages,weight,Pickup_date,earlest_pickupTime,latest_pickupTime,pickup_location,address,amount
     })
   }
 

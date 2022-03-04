@@ -25,8 +25,8 @@
 //   color: black;
 // }
 .vertical-nav {
-  min-width: 23rem;
-  width: 23rem;
+  min-width: 25rem;
+  width: 25rem;
   height: 100vh;
   position: fixed;
   top: 0;
@@ -36,15 +36,15 @@
 }
 
 .page-content {
-  width: calc(100% - 23rem);
-  margin-left: 23rem;
+  width: calc(100% - 25rem);
+  margin-left: 25rem;
   transition: all 0.4s;
 }
 
 /* for toggle behavior */
 
 #sidebar.active {
-  margin-left: -23rem;
+  margin-left: -25rem;
 }
 
 #content.active {
@@ -54,7 +54,7 @@
 
 @media (max-width: 768px) {
   #sidebar {
-    margin-left: -23rem;
+    margin-left: -25rem;
   }
   #sidebar.active {
     margin-left: 0;
@@ -64,8 +64,8 @@
     margin: 0;
   }
   #content.active {
-    margin-left: 19rem;
-    width: calc(100% - 23rem);
+    margin-left: 25rem;
+    width: calc(100% - 25rem);
   }
 }
 

@@ -6,27 +6,7 @@
         <tr>
           <td>Mobile Number:</td>
           <td>
-            <!-- <input
-          name="mobileNumber"
-          [ngModel]="user.mobileNumber"
-          [pattern]="mobNumberPattern"
-          #mobNumber="ngModel"
-          placeholder="+911234567890"
-        /> -->
-            <input
-              name="mobileNumber"
-              placeholder=" +917986618543"
-              value="{{ phoneNumber }}"
-              disabled
-            />
-            <!-- <div
-          *ngIf="
-            mobNumber.errors && userForm.submitted && !isValidFormSubmitted
-          "
-          [ngClass]="'error'"
-        >
-          <div *ngIf="mobNumber.errors">Mobile number not valid.</div>
-        </div> -->
+            <input name="mobileNumber" value="{{ phoneNumber }}" disabled />
           </td>
         </tr>
 

@@ -78,8 +78,8 @@ return this.amount=this.total5
  
   this.totalamount=this.num_of_packages*100;
 
-  
-
+  storeData[16]=this.amount
+localStorage.setItem("parcel", JSON.stringify(storeData));
 
   
     this.user.getData().subscribe((data: { status: any; ID: any; email: string; }) => {

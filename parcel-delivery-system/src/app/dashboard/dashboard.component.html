@@ -1,6 +1,6 @@
 <body>
   <!-- Vertical navbar -->
-  <div class="vertical-nav bg-white" id="sidebar" [ngClass]="{ show: isShown }">
+  <div class="vertical-nav bg-white" id="sidebar">
     <div class="py-4 px-3 mb-4 bg-light">
       <div class="media d-flex align-items-center">
         <img
@@ -62,11 +62,21 @@
       </li>
       <li class="nav-item">
         <a
+          routerLink="/shipment"
+          class="nav-link text-dark font-italic"
+          style="font-size: 20px"
+        >
+          <i class="fas fa-clipboard mr-3 text-primary fa-fw"></i>
+          Shipment
+        </a>
+      </li>
+      <li class="nav-item">
+        <a
           (click)="logout()"
           class="nav-link text-dark font-italic"
           style="font-size: 20px"
         >
-          <i class="fa fa-picture-o mr-3 text-primary fa-fw"></i>
+          <i class="fas fa-sign-out-alt mr-3 text-primary fa-fw"></i>
           logout
         </a>
       </li>
