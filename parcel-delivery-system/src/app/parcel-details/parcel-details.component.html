@@ -1,4 +1,7 @@
 <body>
+  <div class="button">
+    <input type="submit" routerLink="/dashboard" value="Back" />
+  </div>
   <h1>Schedule a Parcel Collection</h1>
   <div class="container">
     <div class="title">Enter Pickup Information</div>
@@ -87,7 +90,7 @@
             <span class="details">Pickup Date:</span>
             <input
               type="text"
-              placeholder="DD-MM-YYYY"
+              placeholder="DD/MM/YYYY"
               [(ngModel)]="Pickup_date"
               required
             />

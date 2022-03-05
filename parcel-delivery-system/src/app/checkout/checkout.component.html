@@ -101,10 +101,18 @@
               class="coupen"
               src="https://image.shutterstock.com/image-illustration/5-percent-discount-golden-shiny-600w-164258327.jpg"
           /></a>
+
           <div class="input-box">
-            <span class="details" style="font-size: 30px"
-              >Total Amount <br />
-              <input value="{{ amount }}" id=" amount" disabled />
+            <span class="details" style="font-size: 20px"
+              >Discount <br />
+              <input value="{{ amount }}" disabled />=
+              <input value="{{ totalamount }}-{{ amount }}" disabled />
+            </span>
+          </div>
+          <div class="input-box">
+            <span class="details" style="font-size: 20px"
+              >Total <br />
+              <input value="{{ recalculate }}" disabled />
             </span>
           </div>
         </div>

@@ -81,9 +81,37 @@ export class ParcelDetailsComponent implements OnInit {
       if(!this.latest_pickupTime){
       alert('Please enter latest pickup time for the parcel.'); 
       return ;}
+       const errors = []
       if(!this.pickup_location){
-      alert('Please enter pickup location for the parcel.'); 
+
+      alert('Please enter pickup location for the parcel.');
+      
       return ;}
+
+      //-----------------date validation-----------
+      if(this.Pickup_date){
+
+      var regex = /^\d{2}\/\d{2}\/\d{4}/ ;//anystring@anystring.anystring
+       if (!regex.test(this.Pickup_date)) {
+      alert("please enter valid pickup date \nlike DD/MM/YYYY");
+      errors.push("invalid email")
+      return
+
+    }else{
+      console.log("valid");
+    }
+    }
+    //---------------------time validation------------
+    if(this.latest_pickupTime && this.earlest_pickupTime){
+      var regex =   /((1[0-2]|0?[0-9]):([0-5][0-9]) ?([AaPp][Mm]))/;
+       if (!regex.test(this.latest_pickupTime)&& !regex.test(this.earlest_pickupTime)) {
+      alert("please enter valid latest pickup time \nlike 00:00 AM/PM");
+      errors.push("invalid time")
+      return
+    }}
+
+
+       if(errors.length==0){
       var data=[];
       data[0]=this.name;
       data[1]=this.username;
@@ -121,5 +149,5 @@ export class ParcelDetailsComponent implements OnInit {
     //   localStorage.setItem("pickup_location",JSON.stringify(this.pickup_location));
       this.router.navigate(['checkout']);
       console.log(this.earlest_pickupTime)
-    }
+    }}
 }

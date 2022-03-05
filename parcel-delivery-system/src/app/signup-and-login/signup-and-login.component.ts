@@ -31,6 +31,11 @@ export class SignupAndLoginComponent implements OnInit {
     this.visible2=false;
     
   }
+  submit(){
+    this.visible2=true;
+    this.visible1=false;
+    this.visible=false;
+  }
   login(){
     this.visible=true;
     this.visible1=false;

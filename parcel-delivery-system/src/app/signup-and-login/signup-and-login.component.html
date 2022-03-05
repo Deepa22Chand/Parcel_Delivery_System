@@ -1,5 +1,9 @@
 <div class="nav">
-  <button routerLink="/dashboard" class="back"><h5>Back</h5></button>
+  <i
+    routerLink="/home"
+    class="fa fa-home fa-2x mr-3 text-primary fa-fw"
+    style="margin-top: 30px; margin-left: 50px; cursor: pointer"
+  ></i>
 </div>
 
 <div class="container">
@@ -26,13 +30,13 @@
               b hide on click it will toggle--->
       <ng-container *ngIf="visible">
         <div
-          class="p-4 mb-2 bg-light shadow-sm p-5"
+          class="p-3 mb-2 bg-light shadow-sm p-5"
           style="border-radius: 25px"
         >
           <form (submit)="loginUser($event)">
             <div
               class="p-4 mb-2 bg-white shadow-sm p-5"
-              style="margin-top: 40px; border-radius: 25px"
+              style="margin-top: 20px; border-radius: 25px"
               id="content"
             >
               <h1>Login</h1>
@@ -76,8 +80,8 @@
         >
           <form (submit)="registerUser($event)">
             <div
-              class="p-4 mb-2 bg-white shadow-sm p-5"
-              style="margin: 100px; border-radius: 25px"
+              class="p-3 mb-2 bg-white shadow-sm p-5"
+              style="margin: 20px; border-radius: 25px"
               id="content"
             >
               <h2>Register Here</h2>
@@ -115,7 +119,7 @@
           </form>
         </div>
       </ng-container>
-      <ng-container>
+      <ng-container *ngIf="visible2">
         <div class="p-3 mb-2 bg-light text-black shadow-sm p-3">
           <div
             class="p-4 mb-2 bg-white shadow-sm p-5"

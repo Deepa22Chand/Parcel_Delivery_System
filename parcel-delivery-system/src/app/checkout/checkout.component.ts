@@ -30,10 +30,10 @@ export class CheckoutComponent implements OnInit {
  latest_pickupTime:string="";
  pickup_location:string="";
   amount!: Number;
-  totalamount!:Number;
+  totalamount!:any;
   total5: any;
 total10: any;
-
+recalculate:any;
 coupen()
 {
   this.isShown = ! this.isShown;
@@ -42,11 +42,13 @@ coupen()
    this.total10=this.totalamount;
    
     this.total10=this.total10 * 0.1;
+    this.recalculate= (this.totalamount -this.total10);
   return this.amount=this.total10
 }
  coupen5(){
      this.total5=this.totalamount;
-    this.total5=this.total5 * 0.5;
+    this.total5=this.total5 * 0.05;
+    this.recalculate= (this.totalamount -this.total5);
 return this.amount=this.total5
 }
 
@@ -87,11 +89,11 @@ var storeData= JSON.parse(localStorage.getItem('data')||'{}')
     this.latest_pickupTime=storeData[14];
     this.pickup_location=storeData[15]
       this.total10=this.num_of_packages*100;
-  this.amount=this.num_of_packages*100;
+  this.amount=0;
   this.total5=this.num_of_packages*100;
  
 this.totalamount=this.num_of_packages*100;
-
+this.recalculate=this.num_of_packages*100;
 localStorage.setItem("parcel", JSON.stringify(storeData));
 
      
@@ -101,7 +103,7 @@ localStorage.setItem("parcel", JSON.stringify(storeData));
 
  parcel_details(event: { preventDefault: () => void; target: any; }){
    
-     console.log("updating parcel details1")
+    console.log("updating parcel details1")
     event.preventDefault()
 
     const target = event.target
@@ -110,10 +112,10 @@ localStorage.setItem("parcel", JSON.stringify(storeData));
     const userid = target.querySelector('#userid').value
   //   console.log(userid)
 
-    console.log(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount);
-    this.auth.parcel_details(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount) .subscribe((data: { success: any; message: any; }) => {
-      localStorage.setItem("amount",JSON.stringify(this.amount));
-      console.log("updating parcel details3",this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.amount)
+    console.log(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.recalculate);
+    this.auth.parcel_details(this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.recalculate) .subscribe((data: { success: any; message: any; }) => {
+      localStorage.setItem("amount",JSON.stringify(this.recalculate));
+      console.log("updating parcel details3",this.name,this.username,this.country,this.phonenumber,this.phonenumber2,this.state,this.city,this.zipcode,userid,this.address,this.num_of_packages,this.weight,this.length_breadth, this.Pickup_date,this.earlest_pickupTime,this.latest_pickupTime,this.pickup_location,this.recalculate)
       if(data.success) {
         this.router.navigate(['payment'])
         this.auth.setEnterDetails(true)
