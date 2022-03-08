@@ -7,11 +7,14 @@
   display: flex;
   justify-content: flex-start;
 
-  background-image: url("https://img.freepik.com/free-vector/free-delivery-logo-with-bike-man-courier_1308-48827.jpg?t=st=1645710434~exp=1645711034~hmac=812ab15eefbf18be34bf4195949d006bd9a4e1401e7815f09205630935474de4&w=1380");
+  background-image: url("https://images.pexels.com/photos/7363161/pexels-photo-7363161.jpeg");
+
   background-repeat: no-repeat;
   background-position: center;
-  background-size: contain;
-  height: 540px;
+  // background-size: contain;
+  background-size: 100% 100%;
+  height: 700px;
+  margin-bottom: 50px;
 }
 
 .button {
